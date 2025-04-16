@@ -28,12 +28,14 @@ class Solution {
         list.add(node.val);
         if(node.left==null && node.right==null){
             if(target==node.val){
-                
                 result.add(new ArrayList(list));
             }
-            return;
+            
         }
-        generatePaths(result, node.left, target-node.val, new ArrayList(list) );
-        generatePaths(result, node.right, target-node.val, new ArrayList(list));
+        else{
+            generatePaths(result, node.left, target-node.val, new ArrayList(list) );
+            generatePaths(result, node.right, target-node.val, new ArrayList(list));
+        }
+        list.remove(list.size()-1);
     }
 }
