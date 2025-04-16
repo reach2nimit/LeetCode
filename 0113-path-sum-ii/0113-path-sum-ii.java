@@ -33,8 +33,8 @@ class Solution {
             
         }
         else{
-            generatePaths(result, node.left, target-node.val, new ArrayList(list) );
-            generatePaths(result, node.right, target-node.val, new ArrayList(list));
+            generatePaths(result, node.left, target-node.val, list );
+            generatePaths(result, node.right, target-node.val, list);
         }
         list.remove(list.size()-1);
     }
