@@ -25,20 +25,15 @@ class Solution {
 
         if(node==null)
             return;
-        
+        list.add(node.val);
         if(node.left==null && node.right==null){
             if(target==node.val){
-                list.add(node.val);
-                result.add(list);
+                
+                result.add(new ArrayList(list));
             }
             return;
         }
-
-        List<Integer> firstList = new ArrayList(list);
-        List<Integer> secondList = new ArrayList(list);
-        firstList.add(node.val);
-        secondList.add(node.val);
-        generatePaths(result, node.left, target-node.val, firstList );
-        generatePaths(result, node.right, target-node.val, secondList);
+        generatePaths(result, node.left, target-node.val, new ArrayList(list) );
+        generatePaths(result, node.right, target-node.val, new ArrayList(list));
     }
 }
