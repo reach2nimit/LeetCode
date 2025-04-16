@@ -26,11 +26,8 @@ class Solution {
         if(node==null)
             return;
         list.add(node.val);
-        if(node.left==null && node.right==null){
-            if(target==node.val){
-                result.add(new ArrayList(list));
-            }
-            
+        if(node.left==null && node.right==null && target==node.val ){
+            result.add(new ArrayList(list));
         }
         else{
             generatePaths(result, node.left, target-node.val, list );
