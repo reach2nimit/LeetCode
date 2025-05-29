@@ -1,14 +1,18 @@
 class StockPrice {
     private final Map<Integer, Integer> timestampPriceMap;
-    private final TreeMap<Integer, Integer> priceFreq;
+    private final Map<Integer, Integer> priceFreq;
+    private final PriorityQueue<Integer> minHeap;
+    private final PriorityQueue<Integer> maxHeap;
     private int currentTimestamp;
 
     public StockPrice() {
         timestampPriceMap = new HashMap<>();
-        priceFreq = new TreeMap<>();
+        priceFreq = new HashMap<>();
+        minHeap = new PriorityQueue<>();
+        maxHeap = new PriorityQueue<>(Collections.reverseOrder());
         currentTimestamp = 0;
     }
-    
+
     public void update(int timestamp, int price) {
         if (timestampPriceMap.containsKey(timestamp)) {
             int oldPrice = timestampPriceMap.get(timestamp);
@@ -22,31 +26,29 @@ class StockPrice {
 
         timestampPriceMap.put(timestamp, price);
         priceFreq.put(price, priceFreq.getOrDefault(price, 0) + 1);
+        minHeap.offer(price);
+        maxHeap.offer(price);
 
         if (timestamp >= currentTimestamp) {
             currentTimestamp = timestamp;
-        }  
+        }
     }
-    
+
     public int current() {
         return timestampPriceMap.get(currentTimestamp);
-        
     }
-    
-    public int maximum() {
-        return priceFreq.lastKey();
-    }
-    
-    public int minimum() {
-        return priceFreq.firstKey();
-    }
-}
 
-/**
- * Your StockPrice object will be instantiated and called as such:
- * StockPrice obj = new StockPrice();
- * obj.update(timestamp,price);
- * int param_2 = obj.current();
- * int param_3 = obj.maximum();
- * int param_4 = obj.minimum();
- */
+    public int maximum() {
+        while (!maxHeap.isEmpty() && priceFreq.getOrDefault(maxHeap.peek(), 0) == 0) {
+            maxHeap.poll();
+        }
+        return maxHeap.peek();
+    }
+
+    public int minimum() {
+        while (!minHeap.isEmpty() && priceFreq.getOrDefault(minHeap.peek(), 0) == 0) {
+            minHeap.poll();
+        }
+        return minHeap.peek();
+    }
+} 
