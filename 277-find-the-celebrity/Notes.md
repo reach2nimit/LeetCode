@@ -1,1 +1,0 @@
-<h2>find-the-celebrity Notes</h2><hr>[ Time taken: 4 d 19 hrs 31 m 57 s ]
