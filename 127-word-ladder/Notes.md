@@ -1,1 +1,0 @@
-<h2>word-ladder Notes</h2><hr>[ Time taken: 3 d 15 hrs 43 m 31 s ]
