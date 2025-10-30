@@ -13,7 +13,7 @@ class Solution {
         index++;
 
         for(int i = k ;i <nums.length; i++){
-            if(dq.peekFirst() == i - k)
+            if(dq.peekFirst() <= i - k)
                 dq.pollFirst();
             
             while(!dq.isEmpty() && nums[dq.peekLast()] <= nums[i])
