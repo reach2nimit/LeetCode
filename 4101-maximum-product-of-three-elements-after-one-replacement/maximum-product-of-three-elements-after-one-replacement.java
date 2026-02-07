@@ -1,15 +1,39 @@
 class Solution {
     public long maxProduct(int[] nums) {
-        long ans, max1 = -1, max2 = -1;
-        for(int i = 0; i < nums.length; i++) {
-            nums[i] = Math.abs(nums[i]);
-            if(nums[i] > max1) {
-                max2 = max1;
-                max1 = nums[i];
+        long maxA = Integer.MIN_VALUE, maxB = Integer.MIN_VALUE;
+        long minP = Integer.MAX_VALUE, minQ = Integer.MAX_VALUE; 
+        int countNonZero = 0;
+        
+        for(int num : nums){
+            if(num != 0){
+                countNonZero++;
             }
-            else if(nums[i] > max2) max2 = nums[i];
+            
+            // Track two largest
+            if(num >= maxA){
+                maxB = maxA;
+                maxA = num;
+            }
+            else if(num >= maxB)
+                maxB = num;
+
+            // Track two smallest
+            if(num <= minP){
+                minQ = minP;
+                minP = num;
+            }
+            else if(num <= minQ)  // ✅ FIXED: Changed >= to <=
+                minQ = num;
         }
-        ans = max1 * max2 * 100000;
-        return ans;
+        
+        if(countNonZero <2){  
+            return 0;
+        }
+        
+        long result = 0;
+        result = Math.max(result, maxA * maxB * 100000);
+        result = Math.max(result, minP * minQ * 100000);
+        result = Math.max(result, maxA * minP * -100000);
+        return result;
     }
 }
