@@ -3,8 +3,7 @@ class Solution {
 
         if(x==0 || x==1)
             return x;
-        // if(x==1)
-        //     return 1;
+
         int left = 1, right = x;
         while(left<right){
             int mid = left + (right-left)/2;
