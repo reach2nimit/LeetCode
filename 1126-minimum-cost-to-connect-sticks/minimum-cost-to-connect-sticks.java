@@ -4,11 +4,11 @@ class Solution {
         PriorityQueue<Integer> pq = new PriorityQueue();
         int totalCost = 0;
         for(int stick : sticks)
-            pq.offer(stick);
+            pq.add(stick);
         
         while(pq.size()>1){
-           int stick1 = pq.poll();
-           int stick2 = pq.poll();
+           int stick1 = pq.remove();
+           int stick2 = pq.remove();
            int cost = stick1 + stick2;
            totalCost += cost;
            pq.add(cost); 
