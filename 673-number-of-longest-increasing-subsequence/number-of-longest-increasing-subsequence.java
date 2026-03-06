@@ -25,6 +25,7 @@ class Solution {
             maxLen = Math.max(maxLen, dp[i]);
         }
         int result = 0;
+        //imp condition read it carefully
         for(int i =0 ; i<n; i++)
             if(dp[i]==maxLen)
                 result+=count[i];
