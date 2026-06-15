@@ -8,18 +8,18 @@ class Solution {
                 low = num;
             high+=num;
         }
-        int result = high;
+        //int result = high;
         while(low <= high){
             int mid = low + (high-low)/2;
 
             if(isFeasible(mid, nums, k)){
-                result = mid;
+                //result = mid;
                 high = mid -1;
             }
             else
                 low = mid+1;
         }
-       return result;
+       return low;
         
     }
 
